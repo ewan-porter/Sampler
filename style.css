@@ -1,0 +1,92 @@
+body {
+    box-sizing: border-box;
+    background-color: black;
+}
+
+
+@font-face {
+    font-family: "ITC-Cheltenham-Ultra";
+    src: url("fonts/CheltenhamStd-Ultra.otf") format("opentype");
+}
+
+.container {
+    height: 100vh;
+    width:100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mpc {
+    padding: 1% 1% 1% 1%;
+    background-color: #d4d5d9;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.mpc__brand {
+    padding-left:20px;
+}
+.mpc__brand h1 {
+    font-family: "ITC-Cheltenham-Ultra", serif;
+    color: #ce0515;
+    font-size: 1.5em;
+    margin: 0
+}
+
+.mpc__brand--pro  {
+    font-family: 'Architects Daughter', cursive;
+    font-size: 0.8em;
+}
+.mpc__vents {
+    background-color: black;
+    height:50px;
+    border-radius: 3px;
+}
+
+.mpc__vent {
+    display: flex;
+    justify-content: center;
+ background-color: black;
+ height: 2px;
+ width: 3em;
+}
+
+.mpc__screen {
+    background-color: #313922;
+   
+    padding: 20px;
+    margin: 2em 2em 2em 2em;
+    border-radius: 2px;
+    outline: 25px solid #0a0a0a;
+    
+    
+}
+
+.mpc__pads {
+    text-align:center;
+}
+
+.mpc__pad {
+    height: 5vw;
+    width: 5vw;
+    margin: 3px;
+    border-radius: 5px;
+    border: none;
+    background: rgba(26, 26, 26, 1);
+    color: #fff;
+    font-size: 1.05rem;
+    outline: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+
+.mpc__pad--active {
+    background: rgba(26, 26, 26, 0.5);
+}
