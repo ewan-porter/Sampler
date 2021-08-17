@@ -20,7 +20,7 @@ const mpc = {
         this.elements.mpcScreen.classList.add("mpc__screen");
         this.elements.padsContainer.classList.add("mpc__pads");
         this.elements.padsContainer.appendChild(this._createPads());
-
+``
         this.elements.pads = this.elements.padsContainer.querySelectorAll(".mpc__pad");
 
         // Add to DOM

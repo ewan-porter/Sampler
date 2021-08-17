@@ -18,9 +18,11 @@ body {
 }
 .mpc {
     padding: 1% 1% 1% 1%;
-    background-color: #d4d5d9;
+    background-color: #e4e1d5;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    border-radius: 5px;
+    box-shadow: 0px 15px 0px 0px #cecbc1;
 }
 
 
@@ -38,18 +40,57 @@ body {
     font-family: 'Architects Daughter', cursive;
     font-size: 0.8em;
 }
+
+
 .mpc__vents {
-    background-color: black;
+    background-color: #d8d5d6;
     height:50px;
     border-radius: 3px;
+    margin:auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    align-content: center;
 }
 
 .mpc__vent {
-    display: flex;
-    justify-content: center;
- background-color: black;
+    background: black;
  height: 2px;
  width: 3em;
+ align-self: center;
+ justify-self: center;
+ margin: 2px 0 2px 0;
+ border-radius: 2px;
+}
+
+.mpc__text {
+    text-align: right;
+
+    padding: 4px 0 30px 0;
+
+}
+.mpc__text h1 {
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: underline #ce0515 solid;
+    transform: scaleY(0.8);
+    margin: 0;
+    font-size: 1.75em;
+    
+   
+}
+
+.mpc__text--outline {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    color: #d4d5d9;
+    text-decoration: underline black solid;
+    
+}
+
+.mpc__text p {
+    margin:-1% 0 0 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62em;
 }
 
 .mpc__screen {
@@ -65,15 +106,18 @@ body {
 
 .mpc__pads {
     text-align:center;
+    background: #d8d5d6;
+    border-radius: 2px;
+    padding: 10px;
 }
 
 .mpc__pad {
     height: 5vw;
     width: 5vw;
     margin: 3px;
-    border-radius: 5px;
+    border-radius: 2px;
     border: none;
-    background: rgba(26, 26, 26, 1);
+    background: #6e605e;
     color: #fff;
     font-size: 1.05rem;
     outline: none;
@@ -85,8 +129,78 @@ body {
     padding: 0;
     -webkit-tap-highlight-color: transparent;
     position: relative;
+    box-shadow: 0px 2px 0px 1px rgba(0,0,0,0.75);
 }
 
 .mpc__pad--active {
-    background: rgba(26, 26, 26, 0.5);
+    background: rgb(107,107,107, 0.5);
+}
+
+.mpc__button {
+    outline: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0px 2px 0px 1px rgba(0,0,0,0.75);
+    border:none;
+    border-radius: 2px;
+    color: black;
+    margin: 5px;
+}
+
+.mpc__button--active {
+
+    background-color: #ff4c3e;
+}
+
+
+.mpc__banks {
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mpc__panel1 {
+    height: 20px;
+    background-color: #d8d5d6;
+    margin: 0 5px 0 5px;
+    border-radius: 5px;
+    grid-column: 1 / 3;  
+}
+
+.mpc__panel2 {
+    height:50px;
+    background-color: #d8d5d6;
+    margin: 0 5px 0 5px;
+    border-radius: 5px;
+    align-content: center;
+}
+
+.mpc__bank-panel-grid {
+    padding: 2%;
+    display: grid;
+    grid-template-columns: 60% 1fr;
+    row-gap: 25%;
+}
+
+.mpc__panel3 {
+    height:40px;
+    width: 60%;
+    background-color: #ff4c3e;
+    margin: 0 5px 0 5px;
+    border-radius: 5px;
+    align-content: center;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.mpc__circle {
+    background-color: black;
+    border-radius: 50%;
+    height: 60px;
+    width:60px;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
