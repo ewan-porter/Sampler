@@ -18,11 +18,14 @@ body {
 }
 .mpc {
     padding: 1% 1% 1% 1%;
+    height:fit-content;
+    width: fit-content;
     background-color: #e4e1d5;
     display: grid;
     grid-template-columns: 1fr 1fr;
     border-radius: 5px;
     box-shadow: 0px 15px 0px 0px #cecbc1;
+    grid-column-gap: 10px;
 }
 
 
@@ -161,25 +164,33 @@ body {
 
 .mpc__panel1 {
     height: 20px;
+    width: 80%;
     background-color: #d8d5d6;
     margin: 0 5px 0 5px;
     border-radius: 5px;
-    grid-column: 1 / 3;  
+    margin: 10px;
+    
 }
 
 .mpc__panel2 {
     height:50px;
+    width: 50%;
     background-color: #d8d5d6;
-    margin: 0 5px 0 5px;
+    margin: 10px;
     border-radius: 5px;
     align-content: center;
 }
 
 .mpc__bank-panel-grid {
     padding: 2%;
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    height: 60%;
+    margin: 15% 2% 15% 2%;
+    /* display: grid;
     grid-template-columns: 60% 1fr;
-    row-gap: 25%;
+    row-gap: 25%; */
 }
 
 .mpc__panel3 {
@@ -188,10 +199,7 @@ body {
     background-color: #ff4c3e;
     margin: 0 5px 0 5px;
     border-radius: 5px;
-    align-content: center;
-    display: block;
-  margin-left: auto;
-  margin-right: auto;
+    margin: 10px;
 }
 
 
@@ -200,7 +208,5 @@ body {
     border-radius: 50%;
     height: 60px;
     width:60px;
-    display: block;
-  margin-left: auto;
-  margin-right: auto;
+    
 }
