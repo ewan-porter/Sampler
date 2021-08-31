@@ -13,7 +13,7 @@ const mpc = {
         this.elements.main = document.createElement("div");
         //left side container
         this.elements.mpcControls = document.createElement("div");
-       
+
         //left side elements
         this.elements.mpcBrand = document.createElement("div");
         this.elements.mpcScreen = document.createElement("div");
@@ -23,13 +23,13 @@ const mpc = {
         this.elements.mpcBanks = document.createElement("div");
         this.elements.mpcPanel3 = document.createElement("div");
         this.elements.mpcCircle = document.createElement("div");
-        
+
         //right side container
         this.elements.mpcRight = document.createElement("div");
-       //vents container
+        //vents container
         this.elements.mpcVents = document.createElement("div");
 
-        
+
         //vents loop
         for (let i = 0; i < 28; i++) {
             this.elements.mpcVent = document.createElement("div");
@@ -41,15 +41,15 @@ const mpc = {
         this.elements.mpcText = document.createElement("div");
         this.elements.mpcPads = document.createElement("div");
 
-        
+
 
         //setup container elements
         this.elements.container.classList.add("container");
         this.elements.main.classList.add("mpc");
-       
-       //left side container
+
+        //left side container
         this.elements.mpcControls.classList.add("mpc__controls");
-        
+
         //left side inner elements
         this.elements.mpcBrand.classList.add("mpc__brand");
         this.elements.mpcBrand.innerHTML = "<h1>AKAI <span class='mpc__brand--pro'>professional</span></h1>"
@@ -60,7 +60,7 @@ const mpc = {
         this.elements.mpcPanel1.classList.add("mpc__panel1");
         this.elements.mpcPanel2.classList.add("mpc__panel2");
         this.elements.mpcBanks.classList.add("mpc__banks");
-        this.elements.mpcBanks.appendChild(this.bankInit());
+        const buttons = this.elements.mpcBanks.appendChild(this.bankInit());
         // this.elements.mpcBanks.innerHTML = "<button type='button' id='bank1' class='mpc__button'>Madlib</button><button type='button' id='bank2' class='mpc__button'>J Dilla</button>"
         this.elements.mpcPanel3.classList.add("mpc__panel3");
         this.elements.mpcCircle.classList.add("mpc__circle");
@@ -75,19 +75,19 @@ const mpc = {
         this.elements.mpcText.classList.add("mpc__text");
         this.elements.mpcText.innerHTML = "<h1><span class='mpc__text--outline'>MPC</span>2000</h1><p>MIDI PRODUCTION CENTER</p>"
         this.elements.mpcPads.classList.add("mpc__pads");
-        this.elements.mpcPads.appendChild(this._createPads());
+        this.elements.mpcPads.appendChild(this._createPads(buttons));
 
         this.elements.pads = this.elements.mpcPads.querySelectorAll(".mpc__pad");
 
-        
 
 
-       
+
+
 
         // Add to DOM
         //container elements
-        
-        
+
+
         //left side elements
         this.elements.mpcControls.appendChild(this.elements.mpcBrand);
         this.elements.mpcControls.appendChild(this.elements.mpcScreen);
@@ -112,24 +112,27 @@ const mpc = {
     },
 
     bankInit() {
-        const fragment2 = document.createDocumentFragment();
-        const banks = [ {
-            id: "Madlib"
-        }, {
-            id: "J Dilla"
-        },];
+        // const fragment2 = document.createDocumentFragment();
+        // const banks = [ {
+        //     id: "Madlib"
+        // }, {
+        //     id: "J Dilla"
+        // },];
 
-        banks.forEach(bank => {
-            const bankButton = document.createElement("button");
-            bankButton.setAttribute("type", "button");
-            bankButton.classList.add("mpc__button");
-            bankButton.innerHTML = bank.id;
-            fragment2.appendChild(bankButton);
-        });
-       
+        // banks.forEach(bank => {
+        //     const bankButton = document.createElement("button");
+        //     bankButton.setAttribute("type", "button");
+        //     bankButton.classList.add("mpc__button");
+        //     bankButton.innerHTML = bank.id;
+        //     fragment2.appendChild(bankButton);
+        // });
 
-      
-        
+        const bankButton = document.createElement("input");
+        bankButton.setAttribute("type", "checkbox");
+        bankButton.classList.add("mpc__button");
+        bankButton.innerHTML = "Switch it up";
+
+
 
         // bank1.addEventListener("click", function() {
         //     if (bank1.classList.contains("mpc__button--active")) {
@@ -137,19 +140,62 @@ const mpc = {
         //     } else {
         //         bank1.classList.add("mpc__button--active"); 
         //     }
-            
-        // })
-        
 
-        return fragment2;
-        
+        // })
+
+
+        return bankButton;
+
 
     },
 
-    _createPads() {
+    _createPads(buttons) {
+
         const fragment = document.createDocumentFragment();
-        const padLayout = [
-            {
+        const padLayout = this.definePad(buttons);
+
+
+
+
+        padLayout.forEach(pad => {
+            const padElement = document.createElement("button");
+            const insertLineBreak = ["4", "R", "F", "V"].indexOf(pad.keyTrigger) !== -1;
+
+            padElement.setAttribute("type", "button");
+            padElement.classList.add("mpc__pad");
+            padElement.innerText = pad.id;
+
+            let audio = document.getElementById(pad.keyTrigger);
+            audio.src = pad.url;
+
+            padElement.addEventListener("click", () => {
+                padElement.classList.add("mpc__pad--active");
+                setTimeout(() => padElement.classList.remove("mpc__pad--active"), 100);
+                this._triggerSound(audio);
+            })
+
+            window.addEventListener("keydown", (e) => {
+                if (e.keyCode === pad.keyCode) {
+                    padElement.classList.add("mpc__pad--active");
+                    setTimeout(() => padElement.classList.remove("mpc__pad--active"), 100);
+                    this._triggerSound(audio);
+                }
+
+            })
+
+
+            fragment.appendChild(padElement);
+
+            if (insertLineBreak) {
+                fragment.appendChild(document.createElement("br"));
+            }
+
+        });
+        return fragment;
+    },
+
+    definePad(buttons) {
+        const madlibLayout = [{
                 keyCode: 49,
                 keyTrigger: "1",
                 id: "kick-1",
@@ -245,44 +291,116 @@ const mpc = {
                 id: "vox-2",
                 url: "audio/madlib/vox-2.wav"
             },
-            
+
         ];
 
-        padLayout.forEach(pad => {
-            const padElement = document.createElement("button");
-            const insertLineBreak = ["4", "R", "F", "V"].indexOf(pad.keyTrigger) !== -1;
+        const jDillaLayout = [{
+                keyCode: 49,
+                keyTrigger: "1",
+                id: "kick-1",
+                url: "audio/jdilla/kick-1.wav"
+            },
+            {
+                keyCode: 50,
+                keyTrigger: "2",
+                id: "kick-2",
+                url: "audio/jdilla/kick-2.wav"
+            },
+            {
+                keyCode: 51,
+                keyTrigger: "3",
+                id: "clap-1",
+                url: "audio/jdilla/clap-1.wav"
+            },
+            {
+                keyCode: 52,
+                keyTrigger: "4",
+                id: "clap-2",
+                url: "audio/jdilla/clap-2.wav"
+            },
+            {
+                keyCode: 81,
+                keyTrigger: "Q",
+                id: "crash-1",
+                url: "audio/jdilla/crash-1.wav"
+            },
+            {
+                keyCode: 87,
+                keyTrigger: "W",
+                id: "crash-2",
+                url: "audio/jdilla/crash-2.wav"
+            },
+            {
+                keyCode: 69,
+                keyTrigger: "E",
+                id: "fx-1",
+                url: "audio/jdilla/fx-1.wav"
+            },
+            {
+                keyCode: 82,
+                keyTrigger: "R",
+                id: "fx-2",
+                url: "audio/jdilla/fx-2.wav"
+            },
+            {
+                keyCode: 65,
+                keyTrigger: "A",
+                id: "hh-1",
+                url: "audio/madlib/hh-1.wav"
+            },
+            {
+                keyCode: 83,
+                keyTrigger: "S",
+                id: "hh-2",
+                url: "audio/jdilla/hh-2.wav"
+            },
+            {
+                keyCode: 68,
+                keyTrigger: "D",
+                id: "snare-1",
+                url: "audio/jdilla/snare-1.wav"
+            },
+            {
+                keyCode: 70,
+                keyTrigger: "F",
+                id: "snare-2",
+                url: "audio/jdilla/snare-2.wav"
+            },
+            {
+                keyCode: 90,
+                keyTrigger: "Z",
+                id: "shaker-1",
+                url: "audio/jdilla/shaker-1.wav"
+            },
+            {
+                keyCode: 88,
+                keyTrigger: "X",
+                id: "sshaker-2",
+                url: "audio/jdilla/shaker-2.wav"
+            },
+            {
+                keyCode: 67,
+                keyTrigger: "C",
+                id: "vox-1",
+                url: "audio/jdilla/vox-1.wav"
+            },
+            {
+                keyCode: 86,
+                keyTrigger: "V",
+                id: "vox-2",
+                url: "audio/jdilla/vox-2.wav"
+            },
 
-            padElement.setAttribute("type", "button");
-            padElement.classList.add("mpc__pad");
-            padElement.innerText = pad.id;
+        ];
 
-            let audio = document.getElementById(pad.keyTrigger);
-            audio.src = pad.url;
+         
 
-            padElement.addEventListener("click", () => {
-                padElement.classList.add("mpc__pad--active");
-                setTimeout(() => padElement.classList.remove("mpc__pad--active"), 100);
-                this._triggerSound(audio);
-            })
+        buttons.addEventListener("change", () => {
+            let activeLayout = jDillaLayout;   
+        })
 
-            window.addEventListener("keydown", (e) => {
-                if (e.keyCode === pad.keyCode) {
-                    padElement.classList.add("mpc__pad--active");
-                    setTimeout(() => padElement.classList.remove("mpc__pad--active"), 100);
-                    this._triggerSound(audio);
-                }
+        return activeLayout;
 
-            })
-
-
-            fragment.appendChild(padElement);
-            
-            if (insertLineBreak) {
-                fragment.appendChild(document.createElement("br"));
-            }
-
-        });
-        return fragment;
     },
 
     _triggerSound(audio) {
