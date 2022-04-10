@@ -1,24 +1,43 @@
-body {
+html {
     box-sizing: border-box;
-    background-color: black;
+    margin: 0;
+
+    
+
+
 }
 
+body {
+    margin: 0;
+    background: linear-gradient(180deg, rgba(0,29,25,0.7399160347732843) 0%, rgba(156,45,37,0.6054622532606793) 100%) , url(images/bg-2.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 
 @font-face {
     font-family: "ITC-Cheltenham-Ultra";
     src: url("fonts/CheltenhamStd-Ultra.otf") format("opentype");
 }
 
+@font-face {
+    font-family: "VT323";
+    src: url("fonts/VT323-Regular.ttf") format("opentype");
+}
+
 .container {
     height: 100vh;
-    width:100vw;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin:10px;
 }
+
 .mpc {
+    margin: 15px;
     padding: 1% 1% 1% 1%;
-    height:fit-content;
     width: fit-content;
     background-color: #e4e1d5;
     display: grid;
@@ -30,8 +49,9 @@ body {
 
 
 .mpc__brand {
-    padding-left:20px;
+    padding-left: 20px;
 }
+
 .mpc__brand h1 {
     font-family: "ITC-Cheltenham-Ultra", serif;
     color: #ce0515;
@@ -39,7 +59,7 @@ body {
     margin: 0
 }
 
-.mpc__brand--pro  {
+.mpc__brand--pro {
     font-family: 'Architects Daughter', cursive;
     font-size: 0.8em;
 }
@@ -47,23 +67,24 @@ body {
 
 .mpc__vents {
     background-color: #d8d5d6;
-    height:50px;
+    height: 50px;
     border-radius: 3px;
-    margin:auto;
+    margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-content: center;
     align-content: center;
+    padding:20px;
 }
 
 .mpc__vent {
     background: black;
- height: 2px;
- width: 3em;
- align-self: center;
- justify-self: center;
- margin: 2px 0 2px 0;
- border-radius: 2px;
+    height: 2px;
+    width: 3em;
+    align-self: center;
+    justify-self: center;
+    margin: 4px 0 4px 0;
+    border-radius: 2px;
 }
 
 .mpc__text {
@@ -72,14 +93,15 @@ body {
     padding: 4px 0 30px 0;
 
 }
+
 .mpc__text h1 {
     font-family: 'Montserrat', sans-serif;
     text-decoration: underline #ce0515 solid;
     transform: scaleY(0.8);
     margin: 0;
-    font-size: 1.75em;
-    
-   
+    font-size: 2em;
+
+
 }
 
 .mpc__text--outline {
@@ -87,28 +109,32 @@ body {
     -webkit-text-stroke-color: black;
     color: #d4d5d9;
     text-decoration: underline black solid;
-    
+
 }
 
 .mpc__text p {
-    margin:-1% 0 0 0;
+    margin: -1% 0 0 0;
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.62em;
+    font-size: 0.7em;
 }
 
 .mpc__screen {
     background-color: #313922;
-   
-    padding: 20px;
+    font-family: 'VT323', sans-serif;
+    font-size: 1.5em;
+    color: white;
+    text-align: center;
+
+    padding: 10px;
     margin: 2em 2em 2em 2em;
     border-radius: 2px;
     outline: 25px solid #0a0a0a;
-    
-    
+
+
 }
 
 .mpc__pads {
-    text-align:center;
+    text-align: center;
     background: #d8d5d6;
     border-radius: 2px;
     padding: 10px;
@@ -116,7 +142,9 @@ body {
 
 .mpc__pad {
     height: 5vw;
+    min-height: 60px;
     width: 5vw;
+    min-width: 60px;
     margin: 3px;
     border-radius: 2px;
     border: none;
@@ -132,53 +160,75 @@ body {
     padding: 0;
     -webkit-tap-highlight-color: transparent;
     position: relative;
-    box-shadow: 0px 2px 0px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 0px 1px rgba(0, 0, 0, 0.75);
 }
 
 .mpc__pad--active {
-    background: rgb(107,107,107, 0.5);
+    background: rgb(107, 107, 107, 0.5);
 }
 
-.mpc__button {
-    outline: none;
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
     cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    box-shadow: 0px 2px 0px 1px rgba(0,0,0,0.75);
-    border:none;
-    border-radius: 2px;
-    color: black;
-    margin: 5px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #6e605e;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
-.mpc__button--active {
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #e4e1d5;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
 
+input:checked+.slider {
     background-color: #ff4c3e;
 }
 
-
-.mpc__banks {
-    display: block;
-  margin-left: auto;
-  margin-right: auto;
+input:focus+.slider {
+    box-shadow: 0 0 1px #ff4c3e;
 }
 
-.mpc__panel1 {
-    height: 20px;
-    width: 80%;
-    background-color: #d8d5d6;
-    margin: 0 5px 0 5px;
-    border-radius: 5px;
-    margin: 10px;
-    
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
 }
 
-.mpc__panel2 {
-    height:50px;
-    width: 50%;
-    background-color: #d8d5d6;
-    margin: 10px;
-    border-radius: 5px;
-    align-content: center;
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
 }
 
 .mpc__bank-panel-grid {
@@ -192,9 +242,55 @@ body {
     grid-template-columns: 60% 1fr;
     row-gap: 25%; */
 }
+.mpc__button {
+    
+    outline: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0px 2px 0px 1px rgba(0, 0, 0, 0.75);
+    border: none;
+    border-radius: 2px;
+    color: black;
+    margin: 14px 5px 5px 5px;
+    justify-content: center;
+}
+
+.mpc__banks {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mpc__panel1 {
+    height: 20px;
+    width: 80%;
+    background-color: #d8d5d6;
+    margin: 0 5px 0 5px;
+    border-radius: 5px;
+    margin: 10px;
+
+}
+
+.mpc__panel2 {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+    height: 50px;
+    width: 50%;
+    background-color: #d8d5d6;
+    margin: 10px;
+    border-radius: 5px;
+    align-content: center;
+    text-align: center;
+    padding: 5px;
+}
+
+.mpc__panel2 p {
+    font-family: 'Montserrat', sans-serif;
+}
 
 .mpc__panel3 {
-    height:40px;
+    height: 40px;
     width: 60%;
     background-color: #ff4c3e;
     margin: 0 5px 0 5px;
@@ -207,6 +303,18 @@ body {
     background-color: black;
     border-radius: 50%;
     height: 60px;
-    width:60px;
-    
+    width: 60px;
+
+}
+
+@media only screen and (max-width: 600px) {
+    .mpc {
+        grid-template-columns: 1fr;
+      
+    }
+
+    .container {
+        height: auto;
+        width: auto;
+    }
 }
